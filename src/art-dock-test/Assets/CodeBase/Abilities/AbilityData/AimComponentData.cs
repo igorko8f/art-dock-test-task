@@ -9,6 +9,7 @@ namespace CodeBase.Abilities.AbilityData
         public AbilityAimType AimType;
         
         [ShowIf("AimType", AbilityAimType.Ange)] 
+        [AllowNesting]
         public float Angle;
         
         public AbilityPlayTime PlayTime;

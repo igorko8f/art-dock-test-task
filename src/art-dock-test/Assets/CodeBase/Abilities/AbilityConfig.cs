@@ -9,6 +9,9 @@ namespace CodeBase.Abilities
     [CreateAssetMenu(menuName = "AbilitySystem/Ability", fileName = "Ability")]
     public class AbilityConfig : ScriptableObject
     {
+        public List<AbilityComponentData> AbilityComponents => _abilityComponents;
+        
+        //TODO: Make private , edit throw editor
         [SerializeReference]
         public List<AbilityComponentData> _abilityComponents = new();
 
@@ -18,7 +21,9 @@ namespace CodeBase.Abilities
         [Dropdown("GetAbilityTypeValues")]
         public string _selectedAbility;
 
-        private Dictionary<string, string> _typeCache = new();
+        private Dictionary<string, string> _dataTypeCache = new();
+        private Dictionary<string, Type> _componentTypeCache = new();
+        private Dictionary<string, Type> _dataToComponentReference = new();
         
         public void OnEnable()
         {
@@ -34,6 +39,7 @@ namespace CodeBase.Abilities
             {
                 var ability = (AbilityComponentData)Activator.CreateInstance(abilityType);
                 ability.Name = ability.GetType().Name;
+                ability.ComponentType = _dataToComponentReference[_selectedAbility];
                 _abilityComponents.Add(ability);
                 Debug.Log($"Added ability: {ability.GetType().Name}");
             }
@@ -45,32 +51,50 @@ namespace CodeBase.Abilities
         
         private DropdownList<string> GetAbilityTypeValues()
         {
-            if (_typeCache == null || _typeCache.Any() == false)
+            if (_dataTypeCache == null || _dataTypeCache.Any() == false )
             {
                 UpdateAbilityTypesCache();
             }
             
             var abilityDataInfo = new DropdownList<string>();
 
-            foreach (var t in _typeCache)
+            _dataToComponentReference.Clear();
+            foreach (var t in _dataTypeCache)
+            {
+                if (_componentTypeCache.ContainsKey(t.Key) == false) continue;
+                
                 abilityDataInfo.Add(t.Key, t.Value);
+                _dataToComponentReference[t.Value] = _componentTypeCache[t.Key];
+            }
 
             return abilityDataInfo;
         }
 
         private void UpdateAbilityTypesCache()
         {
-            _typeCache.Clear();
-            _typeCache = GetAllAbilityDataTypes();
+            _dataTypeCache.Clear();
+            _dataTypeCache = GetAllAbilityDataTypes();
+            
+            _componentTypeCache.Clear();
+            _componentTypeCache = GetAllAbilityComponentTypes();
         }
-        
+
+        private Dictionary<string,Type> GetAllAbilityComponentTypes()
+        {
+            return AppDomain.CurrentDomain
+                .GetAssemblies()
+                .SelectMany(assembly => assembly.GetTypes())
+                .Where(t => t.Namespace == "CodeBase.Abilities.AbilityComponents" && t.IsClass)
+                .ToDictionary(t => t.Name, t => t.BaseType);
+        }
+
         private Dictionary<string, string> GetAllAbilityDataTypes()
         {
             return AppDomain.CurrentDomain
                 .GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
                 .Where(t => t.Namespace == "CodeBase.Abilities.AbilityData" && t.IsClass)
-                .ToDictionary(t => t.Name, t => t.AssemblyQualifiedName);
+                .ToDictionary(t => t.Name.Replace("Data", ""), t => t.AssemblyQualifiedName);
         }
 #endif
         

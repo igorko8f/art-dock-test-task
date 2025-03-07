@@ -10,6 +10,7 @@ namespace CodeBase.Abilities.AbilityData
         public bool Animated;
 
         [ShowIf("Animated")] 
+        [AllowNesting]
         public float AnimationSpeed;
         
         public AbilityPlayTime PlayTime;

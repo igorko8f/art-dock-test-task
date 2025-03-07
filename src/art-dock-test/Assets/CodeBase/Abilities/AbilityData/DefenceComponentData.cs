@@ -10,9 +10,11 @@ namespace CodeBase.Abilities.AbilityData
         public AbilityEffectDurationType DurationType;
         
         [ShowIf("DurationType", AbilityEffectDurationType.Continuous)]
+        [AllowNesting]
         public float Duration;
         
         [ShowIf("DurationType", AbilityEffectDurationType.Continuous)]
+        [AllowNesting]
         public float Delay;
 
         public float Value;

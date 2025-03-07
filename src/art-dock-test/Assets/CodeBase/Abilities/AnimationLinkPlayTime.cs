@@ -10,6 +10,7 @@ namespace CodeBase.Abilities
         public AnimationLinkPlayTimeType PlayTimeType;
 
         [ShowIf("PlayTimeType", AnimationLinkPlayTimeType.Delay)]
+        [AllowNesting]
         public float DelayTime;
     }
 }

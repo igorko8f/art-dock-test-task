@@ -8,7 +8,6 @@ namespace Codebase.StaticData
         //Declare resources 
         private static ResourceName[] resources =
         {
-            
         };
 
         public static string GetLocation<TResource>() where TResource : IResource

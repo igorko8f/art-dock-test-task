@@ -12,4 +12,4 @@ namespace CodeBase.Abilities
         
         public AbilityPriority Priority;
     }
-}
+} 

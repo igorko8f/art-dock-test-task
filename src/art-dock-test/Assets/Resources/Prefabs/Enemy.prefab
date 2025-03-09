@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7086993316388740590}
   - component: {fileID: 2668935714556764259}
   - component: {fileID: 1532932212010290630}
+  - component: {fileID: 2266158229354643656}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -69,6 +70,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cce7a1a6a83046f982ffcf8c650d0e2f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2266158229354643656
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4738100557373433536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa13bc9f5be45faac3114b8440be2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 687902526067111612}
+  _defaultState: Idle
 --- !u!1001 &639428733577781000
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -124,8 +139,13 @@ PrefabInstance:
     - target: {fileID: 95805638432926132, guid: dbf7a0c9d76b77a40af3104feac0641d,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 95805638432926132, guid: dbf7a0c9d76b77a40af3104feac0641d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: ee0af63e49184c140b6dc5d80f6aae2b, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -134,6 +154,12 @@ PrefabInstance:
 --- !u!4 &635529596021987454 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4063552230360950, guid: dbf7a0c9d76b77a40af3104feac0641d,
+    type: 3}
+  m_PrefabInstance: {fileID: 639428733577781000}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &687902526067111612 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95805638432926132, guid: dbf7a0c9d76b77a40af3104feac0641d,
     type: 3}
   m_PrefabInstance: {fileID: 639428733577781000}
   m_PrefabAsset: {fileID: 0}

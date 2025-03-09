@@ -1,4 +1,6 @@
+using CodeBase.Services.AudioManager;
 using CodeBase.Services.ProjectResourcesProvider;
+using CodeBase.Services.VisualFXPlayer;
 using Codebase.Systems.CommandSystem;
 using CodeBase.Systems.CoroutineRunner;
 using Codebase.Systems.EventBroker;
@@ -9,6 +11,7 @@ using Zenject;
 public class BootstrapInstaller : MonoInstaller
 {
     [SerializeField] private CoroutineRunner CoroutineRunner;
+    [SerializeField] private AudioManager AudioManager;
     
     public override void InstallBindings()
     {
@@ -21,7 +24,26 @@ public class BootstrapInstaller : MonoInstaller
         BindCommandDispacher();
         BindProjectResourcesProvider(); 
         BindCoroutineRunner();
+        BindAudioManager();
+        BindVisulaFXPLayer();
         BindGameStateMachine();
+    }
+
+    private void BindVisulaFXPLayer()
+    {
+        Container
+            .Bind<IVisualFXPlayer>()
+            .To<VisualFXPlayer>()
+            .AsSingle();
+    }
+
+    private void BindAudioManager()
+    {
+        Container
+            .Bind<IAudioManager>()
+            .FromComponentInNewPrefab(AudioManager)
+            .AsSingle()
+            .NonLazy();
     }
 
     private void BindProjectResourcesProvider()

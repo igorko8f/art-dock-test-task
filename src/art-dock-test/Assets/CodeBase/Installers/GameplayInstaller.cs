@@ -10,8 +10,7 @@ public class GameplayInstaller : MonoInstaller
 {
     [SerializeField] private WindowsManagementService _windowsManagementService;
     [SerializeField] private Camera _mainCamera;
-
-    [SerializeField] private PlayerBase _playerPrefab;
+    
     [SerializeField] private Transform _playerSpawnPoint;
     
     public override void InstallBindings()
@@ -26,8 +25,8 @@ public class GameplayInstaller : MonoInstaller
 
     private void BindPlayer()
     {
-        Container.Bind<PlayerBase>()
-            .FromComponentInNewPrefab(_playerPrefab)
+        Container.Bind<IPlayerHolder>()
+            .To<PlayerHolder>()
             .AsSingle()
             .WithArguments(_playerSpawnPoint)
             .NonLazy();

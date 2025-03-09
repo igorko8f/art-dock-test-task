@@ -1,5 +1,6 @@
 ﻿using System;
 using CodeBase.Components.Enemy;
+using CodeBase.Components.Player;
 using CodeBase.Services.ProjectResourcesProvider;
 
 namespace Codebase.StaticData
@@ -9,7 +10,8 @@ namespace Codebase.StaticData
         //Declare resources 
         private static ResourceName[] resources =
         {
-            new (typeof(EnemyBase), "Prefabs/")
+            new (typeof(EnemyBase), "Prefabs/"),
+            new (typeof(PlayerBase), "Prefabs/")
         };
 
         public static string GetLocation<TResource>() where TResource : IResource

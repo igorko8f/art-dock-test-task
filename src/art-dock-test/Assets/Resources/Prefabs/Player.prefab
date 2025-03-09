@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6797085197660078187}
   - component: {fileID: 2889218764072805761}
   - component: {fileID: 5687693391525032675}
+  - component: {fileID: 5845410519052016040}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -85,7 +86,22 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10a0077199c7416a8024accc8703d6fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _entityAnimation: {fileID: 5845410519052016040}
   _speed: 5
+--- !u!114 &5845410519052016040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429000492940055315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4aa13bc9f5be45faac3114b8440be2c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _animator: {fileID: 2612032370858645100}
+  _defaultState: Idle
 --- !u!1001 &2696712870867582882
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -141,13 +157,19 @@ PrefabInstance:
     - target: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
         type: 3}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccd8c3b89aa02e943a08ab9238a8a70c, type: 3}
+--- !u!95 &2612032370858645100 stripped
+Animator:
+  m_CorrespondingSourceObject: {fileID: 95538263452871118, guid: ccd8c3b89aa02e943a08ab9238a8a70c,
+    type: 3}
+  m_PrefabInstance: {fileID: 2696712870867582882}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &2694135317253919580 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4463868907105534, guid: ccd8c3b89aa02e943a08ab9238a8a70c,

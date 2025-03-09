@@ -1,3 +1,4 @@
+using CodeBase.Components.Enemy;
 using CodeBase.Components.Player;
 using CodeBase.Services.InputService;
 using CodeBase.Services.MainCameraService;
@@ -20,6 +21,7 @@ public class GameplayInstaller : MonoInstaller
         BindMainCameraService();
 
         BindPlayer();
+        BindEnemies();
     }
 
     private void BindPlayer()
@@ -28,6 +30,19 @@ public class GameplayInstaller : MonoInstaller
             .FromComponentInNewPrefab(_playerPrefab)
             .AsSingle()
             .WithArguments(_playerSpawnPoint)
+            .NonLazy();
+    }
+
+    private void BindEnemies()
+    {
+        Container.Bind<IEnemyFactory>()
+            .To<EnemyFactory>()
+            .AsSingle()
+            .NonLazy();
+
+        Container.Bind<IEnemiesHolder>()
+            .To<EnemiesHolder>()
+            .AsSingle()
             .NonLazy();
     }
 

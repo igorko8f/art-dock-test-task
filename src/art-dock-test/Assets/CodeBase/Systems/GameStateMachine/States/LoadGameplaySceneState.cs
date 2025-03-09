@@ -7,10 +7,12 @@ namespace CodeBase.Systems.GameStateMachine.States
 {
     public class LoadGameplaySceneState : IState
     {
+        private readonly IGameStateMachine _gameStateMachine;
         private readonly ICoroutineRunner _coroutineRunner;
 
-        public LoadGameplaySceneState(ICoroutineRunner coroutineRunner)
+        public LoadGameplaySceneState(IGameStateMachine gameStateMachine, ICoroutineRunner coroutineRunner)
         {
+            _gameStateMachine = gameStateMachine;
             _coroutineRunner = coroutineRunner;
         }
         

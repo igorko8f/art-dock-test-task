@@ -23,7 +23,7 @@ namespace CodeBase.Systems.GameStateMachine
             _states = new Dictionary<Type, IExitableState>()
             {
                 [typeof(BootstrapState)] = _instantiator.Instantiate<BootstrapState>(),
-                [typeof(LoadGameplaySceneState)] = _instantiator.Instantiate<LoadGameplaySceneState>(),
+                [typeof(LoadGameplaySceneState)] = _instantiator.Instantiate<LoadGameplaySceneState>()
             };
         }
         

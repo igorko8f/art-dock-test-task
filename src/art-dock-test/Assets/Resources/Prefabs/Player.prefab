@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 2889218764072805761}
   - component: {fileID: 5687693391525032675}
   - component: {fileID: 5845410519052016040}
+  - component: {fileID: 167454032318273780}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -74,6 +75,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 82d64474720f43bb98a4cd3e57adc0b6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _playerAbilities: {fileID: 167454032318273780}
 --- !u!114 &5687693391525032675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -88,6 +90,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _entityAnimation: {fileID: 5845410519052016040}
   _speed: 5
+  _rotationSpeed: 100
 --- !u!114 &5845410519052016040
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -102,6 +105,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _animator: {fileID: 2612032370858645100}
   _defaultState: Idle
+--- !u!114 &167454032318273780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6429000492940055315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 95ee3db6a8da4be290ebf630e05c9eae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerAbilitiesToUse: []
 --- !u!1001 &2696712870867582882
 PrefabInstance:
   m_ObjectHideFlags: 0

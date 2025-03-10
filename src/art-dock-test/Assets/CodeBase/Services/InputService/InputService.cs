@@ -17,12 +17,18 @@ namespace CodeBase.Services.InputService
         public void DisableInput() => 
             _isInputEnabled = false;
 
-        public Vector2 GetInputVector()
+        public Vector3 GetInputVector()
         {
             if (_isInputEnabled == false)
-                return Vector2.zero;
+                return Vector3.zero;
             
-            return new Vector2(Input.GetAxis("Horizontal"), Input.GetAxis("Vertical"));
+            return new Vector3(Input.GetAxis("Horizontal"),0, Input.GetAxis("Vertical")).normalized;
+        }
+
+        public bool ValidateInput(KeyCode hotKey)
+        {
+            if (_isInputEnabled == false) return false;
+            return Input.GetKey(hotKey);
         }
     }
 }

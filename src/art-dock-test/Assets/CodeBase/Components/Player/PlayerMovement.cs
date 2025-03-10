@@ -26,19 +26,19 @@ namespace CodeBase.Components.Player
         private void Update()
         {
             var inputVector = _inputService.GetInputVector();
-            
-            if (inputVector.magnitude <= 0) return;
+
+            if (inputVector.magnitude <= 0)
+            {
+                _entityAnimation.SetFloatProperty("velocity", 0f);
+                return;
+            }
             
             _entityAnimation.SetFloatProperty("velocity", inputVector.magnitude);
             
-            Vector3 move = transform.right * inputVector.x + transform.forward * inputVector.y;
-            _characterController.Move(move * _speed * Time.deltaTime);
+            Quaternion targetRotation = Quaternion.LookRotation(inputVector, Vector3.up);
+            transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
+            _characterController.Move(transform.forward * _speed * Time.deltaTime);
             
-            Quaternion targetRotation = Quaternion.LookRotation(move);
-            if (Vector3.Dot(transform.forward, move) > 0)
-            {
-                transform.rotation =  Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
-            }
             
         }
     } 

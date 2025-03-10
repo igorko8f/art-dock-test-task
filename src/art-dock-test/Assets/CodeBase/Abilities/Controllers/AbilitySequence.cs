@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using CodeBase.Abilities.AbilityComponents;
+using UniRx;
 using Zenject;
 
 namespace CodeBase.Abilities.Controllers
@@ -20,10 +22,15 @@ namespace CodeBase.Abilities.Controllers
             ConstructSequence();
         }
 
-        public void Play()
+        public IObservable<Unit> Play()
         {
-            foreach (var component in _sequence) 
-                component.PlayEffect();
+            var abilitySequence = Observable.FromCoroutine(_sequence[0].PlayEffect);
+            for (var index = 1; index < _sequence.Count; index++)
+            {
+                abilitySequence.SelectMany(_sequence[index].PlayEffect);
+            }
+
+            return abilitySequence;
         }
 
         public void Dispose()

@@ -1,6 +1,8 @@
-﻿namespace CodeBase.Abilities.Controllers
+﻿using System;
+
+namespace CodeBase.Abilities.Controllers
 {
-    public interface IAbilityController
+    public interface IAbilityController : IDisposable
     {
         void ConstructAbilitySequences(AbilityConfig[] configs);
     }

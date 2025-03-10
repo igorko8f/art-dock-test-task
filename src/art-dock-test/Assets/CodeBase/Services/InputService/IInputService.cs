@@ -6,8 +6,8 @@ namespace CodeBase.Services.InputService
     {
         void EnableInput();
         void DisableInput();
-        
-        Vector2 GetInputVector();
+        bool ValidateInput(KeyCode hotKey);
+        Vector3 GetInputVector();
         
     }
 }

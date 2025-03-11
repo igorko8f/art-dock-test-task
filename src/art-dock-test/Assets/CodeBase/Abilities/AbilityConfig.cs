@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using NaughtyAttributes;
@@ -22,8 +23,8 @@ namespace CodeBase.Abilities
         public string _selectedAbility;
 
         private Dictionary<string, string> _dataTypeCache = new();
-        private Dictionary<string, Type> _componentTypeCache = new();
-        private Dictionary<string, Type> _dataToComponentReference = new();
+        private Dictionary<string, string> _componentTypeCache = new();
+        private Dictionary<string, string> _dataToComponentReference = new();
         
         public void OnEnable()
         {
@@ -56,6 +57,7 @@ namespace CodeBase.Abilities
                 UpdateAbilityTypesCache();
             }
             
+            
             var abilityDataInfo = new DropdownList<string>();
 
             _dataToComponentReference.Clear();
@@ -72,6 +74,8 @@ namespace CodeBase.Abilities
 
         private void UpdateAbilityTypesCache()
         {
+            _dataToComponentReference.Clear();
+            
             _dataTypeCache.Clear();
             _dataTypeCache = GetAllAbilityDataTypes();
             
@@ -79,13 +83,17 @@ namespace CodeBase.Abilities
             _componentTypeCache = GetAllAbilityComponentTypes();
         }
 
-        private Dictionary<string,Type> GetAllAbilityComponentTypes()
+        private Dictionary<string,string> GetAllAbilityComponentTypes()
         {
             return AppDomain.CurrentDomain
                 .GetAssemblies()
                 .SelectMany(assembly => assembly.GetTypes())
-                .Where(t => t.Namespace == "CodeBase.Abilities.AbilityComponents" && t.IsClass)
-                .ToDictionary(t => t.Name, t => t.BaseType);
+                .Where(t => t.Namespace == "CodeBase.Abilities.AbilityComponents" 
+                            && t.IsClass 
+                            && !t.IsAbstract 
+                            && !typeof(IEnumerator).IsAssignableFrom(t)
+                            && t.Name != "AbilityComponent")
+                .ToDictionary(t => t.Name, t => t.AssemblyQualifiedName);
         }
 
         private Dictionary<string, string> GetAllAbilityDataTypes()

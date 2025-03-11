@@ -10,6 +10,11 @@ namespace CodeBase.Abilities.AbilityComponents
             yield return null;
         }
 
+        public virtual void OnEffectPlayed()
+        {
+            
+        }
+
         public void Dispose()
         {
         }

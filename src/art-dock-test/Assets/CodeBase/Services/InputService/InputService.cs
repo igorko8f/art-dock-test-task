@@ -28,7 +28,7 @@ namespace CodeBase.Services.InputService
         public bool ValidateInput(KeyCode hotKey)
         {
             if (_isInputEnabled == false) return false;
-            return Input.GetKey(hotKey);
+            return Input.GetKeyDown(hotKey);
         }
     }
 }

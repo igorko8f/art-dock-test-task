@@ -32,7 +32,8 @@ namespace CodeBase.Abilities.Controllers
                 _isAnyAbilityPlaing = true;
                 _currentPlayingAbility = sequence.Play();
                 _currentPlayingAbility
-                    .Subscribe((_) => OnAbilityPlayed());
+                    .DoOnCompleted(OnAbilityPlayed)
+                    .Subscribe();
             }
             else
             {

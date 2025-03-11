@@ -6,9 +6,6 @@ namespace CodeBase.Components.Animation
 {
     public class EntityAnimationController : MonoBehaviour
     {
-        public event Action<string> AnimationStarted;
-        public event Action<string> AnimationCompleted;
-
         [SerializeField] private Animator _animator;
         [SerializeField] private string _defaultState = "Idle";
 
@@ -26,7 +23,7 @@ namespace CodeBase.Components.Animation
             _animator.Play(_defaultState);
         }
         
-        public void PlayAnimation(string animationName)
+        public float PlayAnimation(string animationName)
         {
             if (_isPlaying) 
                 StopCurrentAnimation();
@@ -34,15 +31,10 @@ namespace CodeBase.Components.Animation
             _currentPlayingAnimation = animationName;
             _animator.Play(_currentPlayingAnimation);
             
-            AnimationStarted?.Invoke(_currentPlayingAnimation);
             _isPlaying = true;
+            return GetCurrentAnimationDuration();
         }
 
-        public void SetFloatProperty(string name, float value)
-        {
-            _animator.SetFloat(name, value);
-        }
-        
         public void StopCurrentAnimation()
         {
             if (_isPlaying == false) 
@@ -51,10 +43,14 @@ namespace CodeBase.Components.Animation
             _isPlaying = false;
             _animator.Play(_defaultState);
             
-            AnimationCompleted?.Invoke(_currentPlayingAnimation);
             _currentPlayingAnimation = string.Empty;
         }
-        
+
+        public void SetFloatProperty(string name, float value)
+        {
+            _animator.SetFloat(name, value);
+        }
+
         public float GetCurrentAnimationDuration()
         {
             if (_runtimeAnimator == null) return 0f;

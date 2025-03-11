@@ -1,3 +1,4 @@
+using CodeBase.Abilities.Controllers;
 using CodeBase.Components.Enemy;
 using CodeBase.Components.Player;
 using CodeBase.Services.InputService;
@@ -30,6 +31,10 @@ public class GameplayInstaller : MonoInstaller
             .AsSingle()
             .WithArguments(_playerSpawnPoint)
             .NonLazy();
+
+        Container.Bind<IAbilityController>()
+            .To<AbilityController>()
+            .AsSingle();
     }
 
     private void BindEnemies()

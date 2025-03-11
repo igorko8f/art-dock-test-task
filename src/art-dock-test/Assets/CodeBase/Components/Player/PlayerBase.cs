@@ -1,6 +1,6 @@
-﻿using System;
-using CodeBase.Abilities;
+﻿using CodeBase.Abilities;
 using CodeBase.Abilities.Controllers;
+using CodeBase.Components.Animation;
 using CodeBase.Components.Player.Abilities;
 using CodeBase.Services.ProjectResourcesProvider;
 using UnityEngine;
@@ -10,15 +10,17 @@ namespace CodeBase.Components.Player
 {
     public class PlayerBase : MonoBehaviour, IResource
     {
+        public EntityAnimationController AnimationController => _animationController;
+        
         [SerializeField] private PlayerAbilitiesBinder _playerAbilities;
+        [SerializeField] private EntityAnimationController _animationController;
 
-        private AbilityController _abilityController;
+        private IAbilityController _abilityController;
         
         [Inject]
-        public void Construct(IInstantiator instantiator)
+        public void Construct(IAbilityController abilityController)
         {
-            _abilityController = new AbilityController(instantiator);
-            _abilityController.ConstructAbilitySequences(_playerAbilities.GetAbilities());
+            _abilityController = abilityController;
         }
 
         public void OnEnable()

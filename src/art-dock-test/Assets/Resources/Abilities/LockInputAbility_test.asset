@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb359437f3ee43de94c5bf05b27bc5e6, type: 3}
+  m_Name: LockInputAbility_test
+  m_EditorClassIdentifier: 
+  _abilityComponents:
+  - rid: 1433835977915760641
+  - rid: 1433835977915760642
+  _selectedAbility: CodeBase.Abilities.AbilityData.AnimationComponentData, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  references:
+    version: 2
+    RefIds:
+    - rid: 1433835977915760641
+      type: {class: LockInputComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: LockInputComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.LockInputComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        Priority: 2
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+          AnimationLinkPlayTime:
+            AnimationName: 
+            PlayTimeType: 0
+            DelayTime: 0
+    - rid: 1433835977915760642
+      type: {class: AnimationComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: AnimationComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.AnimationComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        Priority: 2
+        AnimationToPlay: Attack01
+        WaitUntillEnd: 1

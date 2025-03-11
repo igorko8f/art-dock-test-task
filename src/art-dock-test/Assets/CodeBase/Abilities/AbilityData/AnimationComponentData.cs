@@ -3,6 +3,7 @@
     [System.Serializable]
     public class AnimationComponentData : AbilityComponentData
     {
-        public string[] AnimationSequence;
+        public string AnimationToPlay;
+        public bool WaitUntillEnd;
     }
 }

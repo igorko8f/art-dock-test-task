@@ -8,7 +8,7 @@ namespace CodeBase.Abilities
     public class AbilityComponentData
     {
         [HideInInspector] public string Name;
-        public Type ComponentType;
+        [HideInInspector] public string ComponentType;
         
         public AbilityPriority Priority;
     }

@@ -76,6 +76,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerAbilities: {fileID: 167454032318273780}
+  _animationController: {fileID: 5845410519052016040}
 --- !u!114 &5687693391525032675
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +118,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95ee3db6a8da4be290ebf630e05c9eae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _playerAbilitiesToUse: []
+  _playerAbilitiesToUse:
+  - Ability: {fileID: 11400000, guid: 627f550067a126e458dac2300b025e69, type: 2}
+    HotKey: 102
 --- !u!1001 &2696712870867582882
 PrefabInstance:
   m_ObjectHideFlags: 0

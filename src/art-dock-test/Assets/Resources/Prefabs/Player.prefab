@@ -77,6 +77,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _playerAbilities: {fileID: 167454032318273780}
   _animationController: {fileID: 5845410519052016040}
+  _movement: {fileID: 5687693391525032675}
 --- !u!114 &5687693391525032675
 MonoBehaviour:
   m_ObjectHideFlags: 0

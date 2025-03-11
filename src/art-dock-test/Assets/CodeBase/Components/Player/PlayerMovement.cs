@@ -1,4 +1,5 @@
-﻿using CodeBase.Components.Animation;
+﻿using System.Collections;
+using CodeBase.Components.Animation;
 using CodeBase.Services.InputService;
 using UnityEngine;
 using Zenject;
@@ -38,8 +39,36 @@ namespace CodeBase.Components.Player
             Quaternion targetRotation = Quaternion.LookRotation(inputVector, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             _characterController.Move(transform.forward * _speed * Time.deltaTime);
+        }
+        
+        public IEnumerator RotateByAngle(float angle, float duration)
+        {
+            Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, angle, 0);
+            yield return RotateToTargetRotation(targetRotation, duration);
+        }
+        
+        public IEnumerator RotateToTargetPosition(Vector3 targetPosition, float duration)
+        {
             
+            Vector3 direction = (targetPosition - transform.position).normalized;
+            Quaternion targetRotation = Quaternion.LookRotation(direction);
+
+            yield return RotateToTargetRotation(targetRotation, duration);
+        }
+
+        private IEnumerator RotateToTargetRotation(Quaternion targetRotation, float duration)
+        {
+            Quaternion startRotation = transform.rotation;
             
+            float elapsedTime = 0f;
+            while (elapsedTime < duration)
+            {
+                transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / duration);
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+
+            transform.rotation = targetRotation;
         }
     } 
 }

@@ -11,9 +11,11 @@ namespace CodeBase.Components.Player
     public class PlayerBase : MonoBehaviour, IResource
     {
         public EntityAnimationController AnimationController => _animationController;
+        public PlayerMovement Movement => _movement;
         
         [SerializeField] private PlayerAbilitiesBinder _playerAbilities;
         [SerializeField] private EntityAnimationController _animationController;
+        [SerializeField] private PlayerMovement _movement;
 
         private IAbilityController _abilityController;
         

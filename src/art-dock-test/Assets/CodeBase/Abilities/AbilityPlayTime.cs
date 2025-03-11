@@ -11,9 +11,5 @@ namespace CodeBase.Abilities
         [ShowIf("Type", AbilityPlayTimeType.Delay)]
         [AllowNesting]
         public float DelayTime = 0f;
-        
-        [ShowIf("Type", AbilityPlayTimeType.AnimationLink)]
-        [AllowNesting]
-        public AnimationLinkPlayTime AnimationLinkPlayTime;
     }
 }

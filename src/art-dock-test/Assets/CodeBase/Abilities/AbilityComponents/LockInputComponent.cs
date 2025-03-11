@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using CodeBase.Abilities.AbilityData;
 using CodeBase.Abilities.Enums;
 using CodeBase.Services.InputService;
@@ -20,15 +19,9 @@ namespace CodeBase.Abilities.AbilityComponents
 
         public override IEnumerator PlayEffect()
         {
-            var playTimeType = _data.PlayTime.Type;
-
-            switch (playTimeType)
+            if (_data.PlayTime.Type == AbilityPlayTimeType.Delay)
             {
-                case AbilityPlayTimeType.Delay:
-                    yield return new WaitForSeconds(_data.PlayTime.DelayTime);
-                    break;
-                case AbilityPlayTimeType.AnimationLink:
-                    break;
+                yield return new WaitForSeconds(_data.PlayTime.DelayTime);
             }
             
             _inputService.DisableInput();

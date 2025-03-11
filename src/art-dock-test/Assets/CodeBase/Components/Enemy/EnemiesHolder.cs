@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using UniRx;
 using UnityEngine;
 
 namespace CodeBase.Components.Enemy
@@ -9,33 +10,35 @@ namespace CodeBase.Components.Enemy
         private readonly IEnemyFactory _factory;
         private readonly List<EnemyBase> _enemyList;
 
-        private EnemyBase _selectedEnemy;
+        public ReactiveProperty<EnemyBase> SelectedEnemy => _selectedEnemy;
+        private ReactiveProperty<EnemyBase> _selectedEnemy = new ReactiveProperty<EnemyBase>();
+
+        private bool _itIsPossibleToSelectEnemy = true;
         
         public EnemiesHolder(IEnemyFactory factory)
         {
             _factory = factory;
             _enemyList = _factory.CreateStartupEnemies().ToList();
+
+            foreach (var enemyBase in _enemyList) 
+                enemyBase.Construct(this);
         }
 
         public void SetEnemySelected(EnemyBase selectedEnemy)
         {
-            if (_selectedEnemy != null) 
+            if (_itIsPossibleToSelectEnemy == false) 
+                return;
+            
+            if (_selectedEnemy.Value != null) 
                 UnselectCurrentEnemy();
 
-            _selectedEnemy = selectedEnemy;
-        }
-
-        public EnemyBase GetSelectedEnemy()
-        {
-            if (_selectedEnemy == null) 
-                Debug.LogWarning("There is no enemy selected!");
-            
-            return _selectedEnemy;
+            _selectedEnemy.Value = selectedEnemy;
+            _selectedEnemy.Value.EnableVisualSelector();
         }
 
         public IEnumerable<EnemyBase> GetEnemiesInRange(float range)
         {
-            if (_selectedEnemy == null)
+            if (_selectedEnemy.Value == null)
             {
                 Debug.LogWarning("There is no enemy selected!");
                 return null;
@@ -44,16 +47,20 @@ namespace CodeBase.Components.Enemy
             var result = new List<EnemyBase>();
             foreach (var enemyBase in _enemyList)
             {
-                if (enemyBase.GetDistanceFrom(_selectedEnemy.GetPosition()) <= range) 
+                if (enemyBase.GetDistanceFrom(_selectedEnemy.Value.GetPosition()) <= range) 
                     result.Add(enemyBase);
             }
 
             return result;
         }
 
+        public void SetPossibilityToSelectEnemy(bool enabled) => 
+            _itIsPossibleToSelectEnemy = enabled;
+
         public void UnselectCurrentEnemy()
         {
-            _selectedEnemy = null;
+            _selectedEnemy.Value.DisableVisualSelector();
+            _selectedEnemy.Value = null;
         }
 
         public void Dispose()

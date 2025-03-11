@@ -13,27 +13,13 @@ MonoBehaviour:
   m_Name: LockInputAbility_test
   m_EditorClassIdentifier: 
   _abilityComponents:
-  - rid: 1433835977915760641
+  - rid: 1433836000045170688
   - rid: 1433835977915760642
-  _selectedAbility: CodeBase.Abilities.AbilityData.AnimationComponentData, Assembly-CSharp,
+  _selectedAbility: CodeBase.Abilities.AbilityData.AimComponentData, Assembly-CSharp,
     Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   references:
     version: 2
     RefIds:
-    - rid: 1433835977915760641
-      type: {class: LockInputComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
-      data:
-        Name: LockInputComponentData
-        ComponentType: CodeBase.Abilities.AbilityComponents.LockInputComponent, Assembly-CSharp,
-          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        Priority: 2
-        PlayTime:
-          Type: 0
-          DelayTime: 0
-          AnimationLinkPlayTime:
-            AnimationName: 
-            PlayTimeType: 0
-            DelayTime: 0
     - rid: 1433835977915760642
       type: {class: AnimationComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
       data:
@@ -43,3 +29,16 @@ MonoBehaviour:
         Priority: 2
         AnimationToPlay: Attack01
         WaitUntillEnd: 1
+    - rid: 1433836000045170688
+      type: {class: AimComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: AimComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.AimComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        Priority: 2
+        AimType: 0
+        Angle: 0
+        RotationTime: 0.2
+        PlayTime:
+          Type: 0
+          DelayTime: 0

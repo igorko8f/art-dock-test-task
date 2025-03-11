@@ -13,6 +13,8 @@ namespace CodeBase.Abilities.Controllers
 
         private IObservable<Unit> _currentPlayingAbility = new Subject<Unit>();
         private bool _isAnyAbilityPlaing = false;
+
+        private CompositeDisposable _compositeDisposable = new();
         
         public AbilityController(IInstantiator instantiator)
         {
@@ -30,10 +32,12 @@ namespace CodeBase.Abilities.Controllers
             if (_abilitySequences.TryGetValue(config, out var sequence))
             {
                 _isAnyAbilityPlaing = true;
+                
                 _currentPlayingAbility = sequence.Play();
                 _currentPlayingAbility
                     .DoOnCompleted(OnAbilityPlayed)
-                    .Subscribe();
+                    .Subscribe()
+                    .AddTo(_compositeDisposable);
             }
             else
             {
@@ -68,6 +72,7 @@ namespace CodeBase.Abilities.Controllers
 
         public void Dispose()
         {
+            _compositeDisposable.Dispose();
             ClearAbilities();
             _currentPlayingAbility = null;
         }

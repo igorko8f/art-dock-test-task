@@ -1,5 +1,7 @@
 ﻿using CodeBase.Abilities.Enums;
 using CodeBase.Services.VisualFXPlayer;
+using NaughtyAttributes;
+using UnityEngine;
 
 namespace CodeBase.Abilities.AbilityData
 {
@@ -7,7 +9,14 @@ namespace CodeBase.Abilities.AbilityData
     public class VisualFXComponentData : AbilityComponentData
     {
         public VisualFX EffectPrefab;
+        public Vector3 PositionOffset;
         public AbilityTargetType TargetType;
+        public AbilityEffectDurationType DurationType;
+
+        [ShowIf("DurationType", AbilityEffectDurationType.Continuous)] 
+        [AllowNesting]
+        public float Duration;
+
         public AbilityPlayTime PlayTime;
     }
 }

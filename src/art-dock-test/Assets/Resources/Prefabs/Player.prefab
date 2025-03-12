@@ -152,6 +152,12 @@ MonoBehaviour:
   _playerAbilitiesToUse:
   - Ability: {fileID: 11400000, guid: 627f550067a126e458dac2300b025e69, type: 2}
     HotKey: 102
+  - Ability: {fileID: 11400000, guid: a14c9db63fae49b4db303f924d497d08, type: 2}
+    HotKey: 104
+  - Ability: {fileID: 11400000, guid: c5d1868b90f844f429b6627b8cc97ee1, type: 2}
+    HotKey: 103
+  - Ability: {fileID: 11400000, guid: c7450425c5b7d4d4d98f0bd36a70f519, type: 2}
+    HotKey: 114
 --- !u!1001 &2696712870867582882
 PrefabInstance:
   m_ObjectHideFlags: 0

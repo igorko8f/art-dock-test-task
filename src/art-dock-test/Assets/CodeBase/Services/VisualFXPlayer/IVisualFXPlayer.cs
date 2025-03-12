@@ -5,7 +5,7 @@ namespace CodeBase.Services.VisualFXPlayer
 {
     public interface IVisualFXPlayer : IDisposable
     {
-        void PlayEffectInstant(VisualFX effectPrefab, Vector3 position, float duration = 0);
+        void PlayEffectInstant(VisualFX effectPrefab, Vector3 position, float duration = 0, Transform target = null);
         void PlayEffectWithDelay(VisualFX effectPrefab, Vector3 position, float delay, float duration = 0);
     }
 }

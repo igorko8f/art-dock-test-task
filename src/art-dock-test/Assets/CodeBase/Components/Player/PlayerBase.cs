@@ -43,7 +43,10 @@ namespace CodeBase.Components.Player
         }
 
         public Vector3 GetPosition() => 
-            transform.position;
+            transform.position + Vector3.up;
+
+        public Transform GetTarget() => 
+            transform;
 
         private void OnAbilityTriggered(AbilityConfig ability)
         {

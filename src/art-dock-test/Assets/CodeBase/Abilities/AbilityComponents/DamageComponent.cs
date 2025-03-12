@@ -10,7 +10,7 @@ namespace CodeBase.Abilities.AbilityComponents
 {
     public class DamageComponent : AbilityComponent
     {
-        protected AbilityDamageType damageType = AbilityDamageType.None;
+        protected AbilityDamageType damageType = AbilityDamageType.Simple;
         
         private readonly DamageComponentData _data;
         private readonly IPlayerHolder _playerHolder;
@@ -32,7 +32,7 @@ namespace CodeBase.Abilities.AbilityComponents
         {
             if (_data.PlayTime.Type == AbilityPlayTimeType.Delay)
             {
-                yield return new WaitForSeconds(_data.Delay);
+                yield return new WaitForSeconds(_data.PlayTime.DelayTime);
             }
 
             if (_data.TargetType == AbilityTargetType.Player)

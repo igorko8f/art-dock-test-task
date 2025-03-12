@@ -1,4 +1,5 @@
 ﻿using System;
+using UniRx;
 using UnityEngine;
 using Zenject;
 
@@ -13,6 +14,7 @@ namespace CodeBase.Components.Animation
         
         private string _currentPlayingAnimation;
         private bool _isPlaying = false;
+        private IDisposable _currentAnimationTimer;
 
         [Inject]
         public void Construct()
@@ -23,7 +25,7 @@ namespace CodeBase.Components.Animation
             _animator.Play(_defaultState);
         }
         
-        public float PlayAnimation(string animationName)
+        public float PlayAnimation(string animationName, bool runDefaultAfterPLaying)
         {
             if (_isPlaying) 
                 StopCurrentAnimation();
@@ -32,20 +34,39 @@ namespace CodeBase.Components.Animation
             _animator.Play(_currentPlayingAnimation);
             
             _isPlaying = true;
+            
+            if (runDefaultAfterPLaying)
+                StopCurrentAnimation(true);
+            
             return GetCurrentAnimationDuration();
         }
 
-        public void StopCurrentAnimation()
+        public void StopCurrentAnimation(bool waitUntilEnd = false)
         {
             if (_isPlaying == false) 
                 return;
-            
+
+            if (waitUntilEnd)
+            {
+                _currentAnimationTimer = Observable.Timer(TimeSpan.FromSeconds(GetCurrentAnimationDuration()))
+                    .Subscribe((_) => StopAndSetDefaultAnimation())
+                    .AddTo(this);
+            }
+            else
+            {
+                StopAndSetDefaultAnimation();
+            }
+        }
+
+        private void StopAndSetDefaultAnimation()
+        {
+            _currentAnimationTimer?.Dispose();
             _isPlaying = false;
             _animator.Play(_defaultState);
             
             _currentPlayingAnimation = string.Empty;
         }
-
+        
         public void SetFloatProperty(string name, float value)
         {
             _animator.SetFloat(name, value);

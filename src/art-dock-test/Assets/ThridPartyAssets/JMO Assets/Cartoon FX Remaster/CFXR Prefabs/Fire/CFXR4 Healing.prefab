@@ -4856,7 +4856,7 @@ GameObject:
   - component: {fileID: 8336275602659357518}
   - component: {fileID: 2663269753631077541}
   m_Layer: 0
-  m_Name: CFXR4 Sun
+  m_Name: CFXR4 Healing
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6155,9 +6155,9 @@ ParticleSystem:
       maxGradient:
         serializedVersion: 2
         key0: {r: 1, g: 1, b: 1, a: 1}
-        key1: {r: 1, g: 0.80558854, b: 0.305, a: 1}
-        key2: {r: 0.7372549, g: 0.38244438, b: 0.20784314, a: 1}
-        key3: {r: 0.1882353, g: 0.10617304, b: 0, a: 1}
+        key1: {r: 0.4708054, g: 1, b: 0.30588233, a: 1}
+        key2: {r: 0.103462085, g: 0.7075472, b: 0.20287685, a: 1}
+        key3: {r: 0.030908512, g: 0.4245283, b: 0, a: 1}
         key4: {r: 0, g: 0, b: 0, a: 0}
         key5: {r: 0, g: 0, b: 0, a: 0}
         key6: {r: 0, g: 0, b: 0, a: 0}
@@ -6179,7 +6179,7 @@ ParticleSystem:
         atime6: 0
         atime7: 0
         m_Mode: 0
-        m_ColorSpace: -1
+        m_ColorSpace: 0
         m_NumColorKeys: 4
         m_NumAlphaKeys: 2
       minGradient:
@@ -9886,12 +9886,12 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7747002053765534775}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
   m_Color: {r: 1, g: 0.6207441, b: 0.20392156, a: 1}
-  m_Intensity: 0
+  m_Intensity: 5.6007376
   m_Range: 8
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208

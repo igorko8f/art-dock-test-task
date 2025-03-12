@@ -1,0 +1,109 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb359437f3ee43de94c5bf05b27bc5e6, type: 3}
+  m_Name: DefencedAttack
+  m_EditorClassIdentifier: 
+  _abilityComponents:
+  - rid: 1433836022276554759
+  - rid: 1433836022276554756
+  - rid: 1433836000045170692
+  - rid: 1433836022276554755
+  - rid: 1433836000045170690
+  - rid: 1433836022276554754
+  - rid: 1433836022276554760
+  _selectedAbility: CodeBase.Abilities.AbilityData.DamageComponentData, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  references:
+    version: 2
+    RefIds:
+    - rid: 1433836000045170690
+      type: {class: SoundComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: SoundComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.SoundComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        SoundFX: {fileID: 8300000, guid: d1857ae27d7a1d54f9c16a2d32e25e6a, type: 3}
+        PlayTime:
+          Type: 0
+          DelayTime: 0.1
+    - rid: 1433836000045170692
+      type: {class: AimComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: AimComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.AimComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        AimType: 0
+        Angle: 0
+        RotationTime: 0.1
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554754
+      type: {class: AnimationComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: AnimationComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.AnimationComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        AnimationToPlay: Attack01
+        WaitUntillEnd: 0
+    - rid: 1433836022276554755
+      type: {class: VisualFXComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: VisualFXComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.VisualFXComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        EffectPrefab: {fileID: 9179074516340683919, guid: bbf9e36a48d6c5648a13889afab076fd,
+          type: 3}
+        PositionOffset: {x: 0, y: 0, z: 0}
+        TargetType: 0
+        DurationType: 0
+        Duration: 0
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554756
+      type: {class: LockInputComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: LockInputComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.LockInputComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554759
+      type: {class: ImmortalityComponentData, ns: CodeBase.Abilities.AbilityData,
+        asm: Assembly-CSharp}
+      data:
+        Name: ImmortalityComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.ImmortalityComponent,
+          Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554760
+      type: {class: DamageComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: DamageComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.DamageComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        TargetType: 1
+        RangeType: 0
+        Range: 0
+        DurationType: 0
+        Duration: 0
+        Delay: 0
+        Value: 20
+        AdditionalFXPrefab: {fileID: 8129981097240669873, guid: 6718dc24203da53468af9ada8fef7d6d,
+          type: 3}
+        PlayTime:
+          Type: 2
+          DelayTime: 0.1

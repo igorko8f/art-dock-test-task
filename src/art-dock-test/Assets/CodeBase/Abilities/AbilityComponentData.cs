@@ -9,7 +9,5 @@ namespace CodeBase.Abilities
     {
         [HideInInspector] public string Name;
         [HideInInspector] public string ComponentType;
-        
-        public AbilityPriority Priority;
     }
 } 

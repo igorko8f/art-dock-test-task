@@ -14,6 +14,12 @@ namespace CodeBase.Components.Player
 
         protected override void OnEntityPlayEffect(float value, AbilityDamageType damageType)
         {
+            if (damageType == AbilityDamageType.Healing)
+            {
+                _playerBase.Health.Heal(value);    
+                return;
+            }
+            
             _playerBase.Health.ApplyDamage(value, damageType);
         }
     }

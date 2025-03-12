@@ -48,9 +48,7 @@ namespace CodeBase.Abilities.Controllers
 
         private void ConstructSequence()
         {
-            var abilityComponentsData = _config
-                .AbilityComponents
-                .OrderBy(component => component.Priority);
+            var abilityComponentsData = _config.AbilityComponents;
             
             foreach (var abilityComponent in abilityComponentsData)
             {

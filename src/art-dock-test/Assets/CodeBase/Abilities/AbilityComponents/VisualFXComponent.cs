@@ -32,17 +32,22 @@ namespace CodeBase.Abilities.AbilityComponents
             {
                 yield return new WaitForSeconds(_data.PlayTime.DelayTime);
             }
-
+            
             if (_data.TargetType == AbilityTargetType.Player)
             {
-                _visualFXPlayer.PlayEffectInstant(_data.EffectPrefab, _playerHolder.Player.GetPosition());
+                var targetPosition = _playerHolder.Player.GetPosition() + _data.PositionOffset;
+                _visualFXPlayer.PlayEffectInstant(_data.EffectPrefab, targetPosition, 
+                    _data.DurationType  == AbilityEffectDurationType.Instant ? 0 : _data.Duration);
             }
             else
             {
                 yield return HoldUntilIsNoValueInObservable(_enemiesHolder.SelectedEnemy);
 
+                var targetPosition = _enemiesHolder.SelectedEnemy.Value.GetPosition() + _data.PositionOffset;
+                
                 _enemiesHolder.SetPossibilityToSelectEnemy(false);
-                _visualFXPlayer.PlayEffectInstant(_data.EffectPrefab, _enemiesHolder.SelectedEnemy.Value.GetPosition());
+                _visualFXPlayer.PlayEffectInstant(_data.EffectPrefab, targetPosition,
+                    _data.DurationType  == AbilityEffectDurationType.Instant ? 0 : _data.Duration);
             }
             
             yield return base.PlayEffect();

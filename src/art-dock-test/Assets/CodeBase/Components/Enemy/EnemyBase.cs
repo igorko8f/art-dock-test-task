@@ -36,15 +36,11 @@ namespace CodeBase.Components.Enemy
             _selector.EnemySelected -= OnEnemySelected;
         }
 
-        public Vector3 GetPosition()
-        {
-            return transform.position;
-        }
+        public Vector3 GetPosition() => 
+            transform.position + Vector3.up;
 
-        public float GetDistanceFrom(Vector3 position)
-        {
-            return Vector3.Distance(position, transform.position);
-        }
+        public float GetDistanceFrom(Vector3 position) => 
+            Vector3.Distance(position, transform.position);
 
         public void EnableVisualSelector()
         {

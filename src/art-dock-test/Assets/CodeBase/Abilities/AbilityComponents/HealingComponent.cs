@@ -29,16 +29,17 @@ namespace CodeBase.Abilities.AbilityComponents
             
             if (_data.AdditionalFXPrefab != null)
             {
-                _visualFXPlayer.PlayEffectInstant(_data.AdditionalFXPrefab, _playerHolder.Player.GetPosition(), _data.DurationType == AbilityEffectDurationType.Instant ? 0 : _data.Duration);
+                _visualFXPlayer.PlayEffectInstant(_data.AdditionalFXPrefab, _playerHolder.Player.GetPosition(), 
+                    _data.DurationType == AbilityEffectDurationType.Instant ? 0 : _data.Duration, _playerHolder.Player.GetTarget());
             }
 
             if (_data.DurationType == AbilityEffectDurationType.Instant)
             {
-                _playerHolder.Player.Health.ApplyDamage(-_data.Value, AbilityDamageType.Healing);
+                _playerHolder.Player.Health.Heal(_data.Value);
             }
             else
             {
-                _playerHolder.Player.EffectsContainer.AddEffect(_data.Duration, _data.Delay, -_data.Value, AbilityDamageType.Healing);
+                _playerHolder.Player.EffectsContainer.AddEffect(_data.Duration, _data.Delay, _data.Value, AbilityDamageType.Healing);
             }
 
             yield return base.PlayEffect();

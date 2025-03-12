@@ -12,9 +12,9 @@ namespace CodeBase.Abilities
     {
         public List<AbilityComponentData> AbilityComponents => _abilityComponents;
         
-        //TODO: Make private , edit throw editor
         [SerializeReference]
-        public List<AbilityComponentData> _abilityComponents = new();
+        [SerializeField] 
+        private List<AbilityComponentData> _abilityComponents = new();
 
 #if UNITY_EDITOR
         //Possibility to add component in Unity Inspector

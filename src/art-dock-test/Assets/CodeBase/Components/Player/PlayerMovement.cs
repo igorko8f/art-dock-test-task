@@ -58,8 +58,10 @@ namespace CodeBase.Components.Player
         public IEnumerator SetPositionOffset(Vector2 positionOffset, float duration)
         {
             var startPosition = transform.position;
-            var targetPosition = startPosition + new Vector3(positionOffset.x, 0, positionOffset.y);
     
+            var offsetWorld = transform.TransformDirection(new Vector3(positionOffset.x, 0, positionOffset.y));
+            var targetPosition = startPosition + offsetWorld;
+
             var elapsedTime = 0f;
 
             while (elapsedTime < duration)
@@ -72,9 +74,9 @@ namespace CodeBase.Components.Player
                 elapsedTime += Time.deltaTime;
                 yield return null;
             }
-            
-            var finalMove = targetPosition - transform.position;
-            _characterController.Move(finalMove);
+
+            _characterController.Move(targetPosition - transform.position);
+            yield return new WaitForSeconds(0.5f);
         }
 
         private IEnumerator RotateToTargetRotation(Quaternion targetRotation, float duration)

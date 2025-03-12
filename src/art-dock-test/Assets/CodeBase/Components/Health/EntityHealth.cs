@@ -1,6 +1,5 @@
 ﻿using CodeBase.Abilities.Enums;
 using UnityEngine;
-using Zenject;
 
 namespace CodeBase.Components.Health
 {
@@ -16,14 +15,33 @@ namespace CodeBase.Components.Health
         
         private bool _isDead;
         private bool _isImmortal;
-
-        [Inject]
-        public void Construct()
+        
+        public void Awake()
         {
             _health = _healthBaseValue;
             _defence = _defenceBaseValue;
+            _isDead = false;
+            _isImmortal = false;
         }
 
+        public void Heal(float value)
+        {
+            if (_isDead)
+            {
+                Debug.Log($"Entity {gameObject.name} already died!");
+                return;
+            }
+
+            if (_health >= _healthBaseValue)
+            {
+                Debug.Log($"Entity {gameObject.name} reached maximum of health!");
+                return;
+            }
+
+            _health = Mathf.Clamp(_health + value, 0, _healthBaseValue);
+            Debug.Log($"Entity {gameObject.name} healed by {_health} points!");
+        }
+        
         public void ApplyDamage(float damage, AbilityDamageType damageType)
         {
             if (_isDead)
@@ -51,18 +69,20 @@ namespace CodeBase.Components.Health
                 _isDead = true;
             }
             
-            Debug.Log($"Entity {gameObject.name} applied {damageType} - {damage} DMG");
+            Debug.Log($"Entity {gameObject.name} applied damage type - {damageType} - value {damage} DMG");
             Debug.Log($"Current health {_health}, current defence {_defence}");
         }
         
         public void EnableImmortality()
         {
             _isImmortal = true;
+            Debug.Log($"Entity {gameObject.name} is immortal!");
         }
 
         public void DisableImmortality()
         {
             _isImmortal = false;
+            Debug.Log($"Entity {gameObject.name} is not immortal anymore!");
         }
     }
 }

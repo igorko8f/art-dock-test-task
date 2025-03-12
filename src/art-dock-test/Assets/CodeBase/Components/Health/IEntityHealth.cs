@@ -8,6 +8,7 @@ namespace CodeBase.Components.Health
 
         void EnableImmortality();
         void DisableImmortality();
+        void Heal(float value);
         void ApplyDamage(float damage, AbilityDamageType damageType);
     }
 }

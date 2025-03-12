@@ -19,7 +19,7 @@ namespace CodeBase.Abilities.AbilityComponents
         public override IEnumerator PlayEffect()
         {
             var playerAnimationController = _playerHolder.Player.AnimationController;
-            var animationTime = playerAnimationController.PlayAnimation(_data.AnimationToPlay);
+            var animationTime = playerAnimationController.PlayAnimation(_data.AnimationToPlay, true);
 
             if (_data.WaitUntillEnd)
             {
@@ -27,11 +27,6 @@ namespace CodeBase.Abilities.AbilityComponents
             }
 
             yield return base.PlayEffect();
-        }
-
-        public override void OnEffectPlayed()
-        {
-            _playerHolder.Player.AnimationController.StopCurrentAnimation();
         }
     }
 }

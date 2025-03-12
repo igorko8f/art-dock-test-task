@@ -14,10 +14,15 @@ namespace CodeBase.Services.VisualFXPlayer
             _coroutineRunner = coroutineRunner;
         }
 
-        public void PlayEffectInstant(VisualFX effectPrefab, Vector3 position, float duration = 0)
+        public void PlayEffectInstant(VisualFX effectPrefab, Vector3 position, float duration = 0, Transform target = null)
         {
             var effect = InstallAndPLayEffect(effectPrefab, position);
-            Object.Destroy(effect, effect.GetEffectDuration() + duration);
+            if (target != null)
+            {
+                effect.transform.SetParent(target);    
+            }
+            
+            Object.Destroy(effect.gameObject, effect.GetEffectDuration() + duration);
         }
 
         public void PlayEffectWithDelay(VisualFX effectPrefab, Vector3 position, float delay, float duration = 0)

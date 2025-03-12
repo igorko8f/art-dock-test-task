@@ -1,0 +1,78 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb359437f3ee43de94c5bf05b27bc5e6, type: 3}
+  m_Name: Dash
+  m_EditorClassIdentifier: 
+  _abilityComponents:
+  - rid: 1433836022276554756
+  - rid: 1433836022276554755
+  - rid: 1433836000045170690
+  - rid: 1433836022276554754
+  - rid: 1433836022276554761
+  _selectedAbility: CodeBase.Abilities.AbilityData.MovementComponentData, Assembly-CSharp,
+    Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+  references:
+    version: 2
+    RefIds:
+    - rid: 1433836000045170690
+      type: {class: SoundComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: SoundComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.SoundComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        SoundFX: {fileID: 8300000, guid: 117fb4a01eea9414eb5efd31d819e5a6, type: 3}
+        PlayTime:
+          Type: 0
+          DelayTime: 0.1
+    - rid: 1433836022276554754
+      type: {class: AnimationComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: AnimationComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.AnimationComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        AnimationToPlay: DefendHit
+        WaitUntillEnd: 0
+    - rid: 1433836022276554755
+      type: {class: VisualFXComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: VisualFXComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.VisualFXComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        EffectPrefab: {fileID: 168285515336398455, guid: 83036083a4ebcd34f98131bd3cf6f4d2,
+          type: 3}
+        PositionOffset: {x: 0, y: 0, z: 0}
+        TargetType: 0
+        DurationType: 0
+        Duration: 0
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554756
+      type: {class: LockInputComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: LockInputComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.LockInputComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836022276554761
+      type: {class: MovementComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: MovementComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.MovementComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        SetPosition: {x: 0, y: -2}
+        Time: 0.3
+        PlayTime:
+          Type: 0
+          DelayTime: 0

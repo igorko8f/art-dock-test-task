@@ -25,18 +25,21 @@ namespace CodeBase.Components.EffectContainer
             Value = value;
             AbilityDamageType = damageType;
 
+            onEffectApply?.Invoke(Value, AbilityDamageType);
+            
             Timer = Observable
                 .Timer(System.TimeSpan.FromSeconds(Delay))
+                .RepeatSafe()
                 .Subscribe(x =>
                 {
-                    CheckTimerFinished(x, onEffectApply, onEffectEnd);
+                    CheckTimerFinished(onEffectApply, onEffectEnd);
                 })
                 .AddTo(_compositeDisposable);
         }
 
-        private void CheckTimerFinished(long delay, Action<float, AbilityDamageType> onEffectApply, Action<EntityContinuousEffect> onEffectEnd)
+        private void CheckTimerFinished(Action<float, AbilityDamageType> onEffectApply, Action<EntityContinuousEffect> onEffectEnd)
         {
-            _currentTime += delay;
+            _currentTime += Delay;
             onEffectApply?.Invoke(Value, AbilityDamageType);
             
             if (_currentTime >= Duration)

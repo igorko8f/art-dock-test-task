@@ -2,7 +2,7 @@
 {
     public enum AbilityDamageType : byte
     {
-        None = 0,
+        Simple = 0,
         Bleeding = 1,
         Combustion = 2,
         Freezing = 3,

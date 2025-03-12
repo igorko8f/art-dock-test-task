@@ -7,11 +7,7 @@ namespace CodeBase.Abilities.AbilityData
     public class MovementComponentData : AbilityComponentData
     {
         public Vector2 SetPosition;
-        public bool Animated;
-
-        [ShowIf("Animated")] 
-        [AllowNesting]
-        public float AnimationSpeed;
+        public float Time;
         
         public AbilityPlayTime PlayTime;
     }

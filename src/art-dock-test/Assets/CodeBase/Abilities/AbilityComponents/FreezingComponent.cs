@@ -1,14 +1,16 @@
 ﻿using CodeBase.Abilities.AbilityData;
+using CodeBase.Abilities.Enums;
+using CodeBase.Components.Enemy;
+using CodeBase.Components.Player;
+using CodeBase.Services.VisualFXPlayer;
 
 namespace CodeBase.Abilities.AbilityComponents
 {
-    public class FreezingComponent : AbilityComponent
+    public class FreezingComponent : DamageComponent
     {
-        private readonly FreezingComponentData _data;
-
-        public FreezingComponent(FreezingComponentData data)
+        public FreezingComponent(DamageComponentData data, IPlayerHolder playerHolder, IEnemiesHolder enemiesHolder, IVisualFXPlayer visualFXPlayer) : base(data, playerHolder, enemiesHolder, visualFXPlayer)
         {
-            _data = data;
+            damageType = AbilityDamageType.Freezing;
         }
     }
 }

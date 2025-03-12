@@ -1,13 +1,21 @@
-﻿using CodeBase.Services.ProjectResourcesProvider;
+﻿using CodeBase.Abilities;
+using CodeBase.Components.EffectContainer;
+using CodeBase.Components.Health;
+using CodeBase.Services.ProjectResourcesProvider;
 using UnityEngine;
 using Zenject;
 
 namespace CodeBase.Components.Enemy
 {
-    public class EnemyBase : MonoBehaviour , IResource
+    public class EnemyBase : MonoBehaviour , IResource, IAbilityTarget
     {
+        public IEntityHealth Health => _entityHealth;
+        public EffectsContainer EffectsContainer => _effectsContainer;
+        
         [SerializeField] private EnemySelector _selector;
         [SerializeField] private GameObject _selectorObject;
+        [SerializeField] private EntityHealth _entityHealth;
+        [SerializeField] private EnemyEffectsContainer _effectsContainer;
         
         private IEnemiesHolder _enemiesHolder;
         
@@ -15,6 +23,7 @@ namespace CodeBase.Components.Enemy
         public void Construct(IEnemiesHolder enemiesHolder)
         {
             _enemiesHolder = enemiesHolder;
+            _effectsContainer.Construct(this);
         }
 
         private void OnEnable()

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UniRx;
 
 namespace CodeBase.Components.Enemy
@@ -9,5 +10,6 @@ namespace CodeBase.Components.Enemy
         void SetEnemySelected(EnemyBase selectedEnemy);
         void UnselectCurrentEnemy();
         void SetPossibilityToSelectEnemy(bool enabled);
+        IEnumerable<EnemyBase> GetEnemiesInRange(float range);
     }
 }

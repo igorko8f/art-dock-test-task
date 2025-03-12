@@ -13,32 +13,48 @@ MonoBehaviour:
   m_Name: LockInputAbility_test
   m_EditorClassIdentifier: 
   _abilityComponents:
-  - rid: 1433836000045170688
-  - rid: 1433835977915760642
+  - rid: 1433836000045170692
+  - rid: 1433836000045170690
+  - rid: 1433836000045170691
   _selectedAbility: CodeBase.Abilities.AbilityData.AimComponentData, Assembly-CSharp,
     Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
   references:
     version: 2
     RefIds:
-    - rid: 1433835977915760642
-      type: {class: AnimationComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+    - rid: 1433836000045170690
+      type: {class: SoundComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
       data:
-        Name: AnimationComponentData
-        ComponentType: CodeBase.Abilities.AbilityComponents.AnimationComponent, Assembly-CSharp,
+        Name: SoundComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.SoundComponent, Assembly-CSharp,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        Priority: 2
-        AnimationToPlay: Attack01
-        WaitUntillEnd: 1
-    - rid: 1433836000045170688
+        Priority: 0
+        SoundFX: {fileID: 8300000, guid: d1857ae27d7a1d54f9c16a2d32e25e6a, type: 3}
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836000045170691
+      type: {class: VisualFXComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
+      data:
+        Name: VisualFXComponentData
+        ComponentType: CodeBase.Abilities.AbilityComponents.VisualFXComponent, Assembly-CSharp,
+          Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
+        Priority: 0
+        EffectPrefab: {fileID: 1464737665029667470, guid: 6f34ef0d986e9db4199cf75805f79753,
+          type: 3}
+        TargetType: 1
+        PlayTime:
+          Type: 0
+          DelayTime: 0
+    - rid: 1433836000045170692
       type: {class: AimComponentData, ns: CodeBase.Abilities.AbilityData, asm: Assembly-CSharp}
       data:
         Name: AimComponentData
         ComponentType: CodeBase.Abilities.AbilityComponents.AimComponent, Assembly-CSharp,
           Version=0.0.0.0, Culture=neutral, PublicKeyToken=null
-        Priority: 2
+        Priority: 0
         AimType: 0
         Angle: 0
-        RotationTime: 0.2
+        RotationTime: 0.1
         PlayTime:
           Type: 0
           DelayTime: 0

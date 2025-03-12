@@ -36,31 +36,52 @@ namespace CodeBase.Components.Player
             
             _entityAnimation.SetFloatProperty("velocity", inputVector.magnitude);
             
-            Quaternion targetRotation = Quaternion.LookRotation(inputVector, Vector3.up);
+            var targetRotation = Quaternion.LookRotation(inputVector, Vector3.up);
             transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, _rotationSpeed * Time.deltaTime);
             _characterController.Move(transform.forward * _speed * Time.deltaTime);
         }
         
         public IEnumerator RotateByAngle(float angle, float duration)
         {
-            Quaternion targetRotation = transform.rotation * Quaternion.Euler(0, angle, 0);
+            var targetRotation = transform.rotation * Quaternion.Euler(0, angle, 0);
             yield return RotateToTargetRotation(targetRotation, duration);
         }
         
         public IEnumerator RotateToTargetPosition(Vector3 targetPosition, float duration)
         {
-            
-            Vector3 direction = (targetPosition - transform.position).normalized;
-            Quaternion targetRotation = Quaternion.LookRotation(direction);
+            var direction = (targetPosition - transform.position).normalized;
+            var targetRotation = Quaternion.LookRotation(direction);
 
             yield return RotateToTargetRotation(targetRotation, duration);
         }
 
+        public IEnumerator SetPositionOffset(Vector2 positionOffset, float duration)
+        {
+            var startPosition = transform.position;
+            var targetPosition = startPosition + new Vector3(positionOffset.x, 0, positionOffset.y);
+    
+            var elapsedTime = 0f;
+
+            while (elapsedTime < duration)
+            {
+                var newPosition = Vector3.Lerp(startPosition, targetPosition, elapsedTime / duration);
+                var deltaMove = newPosition - transform.position;
+
+                _characterController.Move(deltaMove);
+
+                elapsedTime += Time.deltaTime;
+                yield return null;
+            }
+            
+            var finalMove = targetPosition - transform.position;
+            _characterController.Move(finalMove);
+        }
+
         private IEnumerator RotateToTargetRotation(Quaternion targetRotation, float duration)
         {
-            Quaternion startRotation = transform.rotation;
+            var startRotation = transform.rotation;
             
-            float elapsedTime = 0f;
+            var elapsedTime = 0f;
             while (elapsedTime < duration)
             {
                 transform.rotation = Quaternion.Slerp(startRotation, targetRotation, elapsedTime / duration);

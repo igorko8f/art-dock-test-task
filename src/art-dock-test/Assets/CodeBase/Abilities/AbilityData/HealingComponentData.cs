@@ -7,13 +7,6 @@ namespace CodeBase.Abilities.AbilityData
     [System.Serializable]
     public class HealingComponentData : AbilityComponentData
     {
-        public AbilityTargetType TargetType;
-        public AbilityEffectRangeType RangeType;
-
-        [ShowIf("RangeType", AbilityEffectRangeType.Ranged)]
-        [AllowNesting]
-        public float Range;
-
         public AbilityEffectDurationType DurationType;
         
         [ShowIf("DurationType", AbilityEffectDurationType.Continuous)]
